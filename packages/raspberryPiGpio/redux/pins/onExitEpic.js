@@ -1,4 +1,4 @@
-const { bindNodeCallback } = require('rxjs')
+const { bindCallback } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { ignoreElements, mergeMap, take, tap } = require('rxjs/operators')
 const { merge } = require('rxjs')
@@ -17,7 +17,7 @@ const sigIntEpic = (
 		}) => (
 			merge(
 				(
-					bindNodeCallback(
+					bindCallback(
 						process
 						.on
 						.bind(process)
@@ -26,7 +26,7 @@ const sigIntEpic = (
 					)
 				),
 				(
-					bindNodeCallback(
+					bindCallback(
 						process
 						.on
 						.bind(process)
@@ -35,7 +35,7 @@ const sigIntEpic = (
 					)
 				),
 				(
-					bindNodeCallback(
+					bindCallback(
 						process
 						.on
 						.bind(process)
@@ -44,7 +44,7 @@ const sigIntEpic = (
 					)
 				),
 				(
-					bindNodeCallback(
+					bindCallback(
 						process
 						.on
 						.bind(process)
