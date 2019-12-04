@@ -5,7 +5,7 @@ const { map, mergeMap } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
 
 const { ADD_PIN } = require('./actions')
-const { sendWebSocketMessage } = require('$redux/connecitons/actions')
+const { sendWebSocketMessage } = require('$redux/connections/actions')
 
 const pinListenerEpic = (
 	action$,
