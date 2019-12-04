@@ -1,0 +1,13 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@ghadyani-eslint/eslint-config-node": "^1.1.6",
+    "eslint": "^6.5.1",
+    "lerna": "^3.16.4",
+    "nodemon": "^1.19.3"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@washer-dryer-wifi-retrofit/central-command",
+  "version": "3.0.5",
+  "description": "GPIO WebSocket server for executing commands from other devices. This allows executing commands and debugging GPIO on your local machine or a service running in the cloud.",
+  "license": "MITNFA",
+  "scripts": {
+    "debug": "nodemon --inspect app.js",
+    "lint": "node app.js lint",
+    "lint:watch": "nodemon app.js lint",
+    "start": "yarn && nodemon app.js",
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
+  "engines": {
+    "node": ">=8.11.4",
+    "yarn": ">=1.6.0"
+  },
+  "_moduleAliases": {
+    "$redux": "./redux",
+    "$utils": "./utils"
+  },
+  "ava": {
+    "babel": {
+      "testOptions": {
+        "babelrc": false
+      }
+    },
+    "concurrency": 5,
+    "files": [
+      "redux/**/*.test.js"
+    ],
+    "sources": [
+      "**/*.js"
+    ]
+  },
+  "dependencies": {
+    "@redux-observable-backend/core": "^4.3.2",
+    "@redux-observable-backend/node": "^4.3.2",
+    "@redux-observable-backend/redux-utils": "^4.3.2",
+    "@redux-observable-backend/websocket": "^4.3.2",
+    "better-module-alias": "^1.0.1",
+    "chalk": "^2.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sawtaytoes/Washer-Dryer-WiFi-Retrofit.git"
+  }
+}
