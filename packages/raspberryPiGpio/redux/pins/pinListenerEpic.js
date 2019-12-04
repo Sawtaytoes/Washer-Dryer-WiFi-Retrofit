@@ -2,6 +2,7 @@ const { bindNodeCallback } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations } = require('@redux-observable-backend/node')
 const { map, mergeMap, tap } = require('rxjs/operators')
+const { Observable } = require('rxjs')
 const { ofType } = require('redux-observable')
 
 const { ADD_PIN } = require('./actions')
@@ -19,11 +20,25 @@ const pinListenerEpic = (
 			pinName,
 			serverName,
 		}) => (
-			bindNodeCallback(
+			Observable
+			.create((
+				observer,
+			) => {
 				pin
-				.watch
-				.bind(pin)
-			)()
+				.watch((
+					error,
+					value,
+				) => {
+					error
+					&& (
+						observer
+						.error(error)
+					)
+
+					observer
+					.next(value)
+				})
+			})
 			.pipe(
 				map((
 					value,
