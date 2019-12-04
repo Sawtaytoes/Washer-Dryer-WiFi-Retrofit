@@ -1,11 +1,9 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { combineEpics } = require('redux-observable')
-const { ignoreElements, map, pluck, tap } = require('rxjs/operators')
+const { map, pluck } = require('rxjs/operators')
 const { ofRequestType } = require('@redux-observable-backend/websocket')
 
-const {
-	GPIO_MESSAGE,
-} = require('./actions')
+const { GPIO_MESSAGE, receivedGpioMessage } = require('./actions')
 
 const onGpioMessage = (
 	action$,
@@ -13,10 +11,8 @@ const onGpioMessage = (
 	action$
 	.pipe(
 		ofRequestType(GPIO_MESSAGE),
-		// pluck('names'),
-		// map(turnOnDevices),
-		tap(console.log),
-		ignoreElements(),
+		pluck('payload'),
+		map(receivedGpioMessage),
 		catchEpicError(),
 	)
 )
