@@ -1,7 +1,7 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations, ofTaskName, tasks } = require('@redux-observable-backend/node')
 const { Gpio } = require('onoff')
-const { map, mergeMap, tap } = require('rxjs/operators')
+const { map, mergeMap } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
 
 const { addPin } = require('./actions')
@@ -18,7 +18,7 @@ const addPinsEpic = (
 			.START_TASK
 		),
 		ofTaskName(
-			'listen',
+			'gpio',
 			'undefined',
 		),
 		map(() => state$.value),
