@@ -1,7 +1,7 @@
 const { bindNodeCallback } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations } = require('@redux-observable-backend/node')
-const { map, mergeMap, tap } = require('rxjs/operators')
+const { map, mergeMap } = require('rxjs/operators')
 const { Observable } = require('rxjs')
 const { ofType } = require('redux-observable')
 
