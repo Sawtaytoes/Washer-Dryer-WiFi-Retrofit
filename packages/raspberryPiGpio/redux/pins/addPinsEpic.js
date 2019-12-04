@@ -1,7 +1,7 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations, ofTaskName, tasks } = require('@redux-observable-backend/node')
 const { Gpio } = require('onoff')
-const { map, mergeMap } = require('rxjs/operators')
+const { map, mergeMap, tap } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
 
 const { addPin } = require('./actions')
@@ -37,6 +37,8 @@ const addPinsEpic = (
 			...rest
 		}) => ({
 			...rest,
+			direction,
+			edge,
 			pin: (
 				new Gpio(
 					pinNumber,
@@ -44,6 +46,7 @@ const addPinsEpic = (
 					edge,
 				)
 			),
+			pinNumber,
 		})),
 		map(addPin),
 		catchEpicError(),

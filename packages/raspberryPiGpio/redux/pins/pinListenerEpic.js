@@ -1,7 +1,7 @@
 const { bindNodeCallback } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations } = require('@redux-observable-backend/node')
-const { map, mergeMap } = require('rxjs/operators')
+const { map, mergeMap, tap } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
 
 const { ADD_PIN } = require('./actions')

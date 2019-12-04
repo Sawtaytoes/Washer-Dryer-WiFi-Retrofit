@@ -18,7 +18,7 @@ const sigIntEpic = (
 				process
 				.on
 				.bind(process)
-			)()
+			)('SIGINT')
 			.pipe(
 				tap(() => {
 					pin

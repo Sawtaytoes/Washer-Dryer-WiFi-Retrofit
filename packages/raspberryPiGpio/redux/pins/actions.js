@@ -1,11 +1,19 @@
 const ADD_PIN = 'PINS::ADD_PIN'
 
 const addPin = ({
-	flicClient,
-	hostname,
+	direction,
+	edge,
+	pin,
+	pinName,
+	pinNumber,
+	serverName,
 }) => ({
-	flicClient,
-	hostname,
+	direction,
+	edge,
+	pin,
+	pinName,
+	pinNumber,
+	serverName,
 	type: ADD_PIN,
 })
 
