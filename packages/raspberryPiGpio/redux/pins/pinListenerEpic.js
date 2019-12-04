@@ -1,12 +1,19 @@
 const { bindNodeCallback } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { configurations } = require('@redux-observable-backend/node')
-const { map, mergeMap } = require('rxjs/operators')
+const { map, mergeMap, tap } = require('rxjs/operators')
 const { Observable } = require('rxjs')
 const { ofType } = require('redux-observable')
 
 const { ADD_PIN } = require('./actions')
 const { sendWebSocketMessage } = require('$redux/connections/actions')
+
+const defaultPipelineOperator = () => (
+	tap(
+		Function
+		.prototype
+	)
+)
 
 const pinListenerEpic = (
 	action$,
@@ -18,6 +25,7 @@ const pinListenerEpic = (
 		mergeMap(({
 			pin,
 			pinName,
+			pipelineOperator = defaultPipelineOperator,
 			serverName,
 		}) => (
 			Observable
@@ -40,20 +48,21 @@ const pinListenerEpic = (
 				})
 			})
 			.pipe(
+				pipelineOperator(),
 				map((
 					value,
 				) => ({
-					deviceName: (
-						configurations
-						.selectors
-						.selectConfigurationSet()(
-							state$
-							.value
-						)
-						.deviceName
-					),
 					namespace: serverName,
 					payload: {
+						deviceName: (
+							configurations
+							.selectors
+							.selectConfigurationSet()(
+								state$
+								.value
+							)
+							.deviceName
+						),
 						pinName,
 						value,
 					},
