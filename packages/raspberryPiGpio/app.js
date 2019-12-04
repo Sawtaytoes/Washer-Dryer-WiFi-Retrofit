@@ -6,7 +6,6 @@ const { applyMiddleware, createStore } = require('redux')
 const { createActionLoggerMiddleware } = require('@redux-observable-backend/redux-utils')
 const { createConfigurationSet, runTasks } = require('@redux-observable-backend/node')
 const { createEpicMiddleware } = require('redux-observable')
-const { createHttpServers, createWebSocketServers } = require('@redux-observable-backend/websocket')
 const { of } = require('rxjs')
 const { tap } = require('rxjs/operators')
 
@@ -49,15 +48,9 @@ epicMiddleware
 of(store)
 .pipe(
 	tap(createConfigurationSet({})),
-
-	// Remove these once @redux-observable-backend gets updated to support multiple tasknames and actually uses them properly instead of everything executing on `undefined`.
-	tap(createHttpServers()),
-	tap(createWebSocketServers()),
-
 	tap(
 		runTasks(
 			'lint',
-			'serve',
 			'listen',
 		)
 	),
