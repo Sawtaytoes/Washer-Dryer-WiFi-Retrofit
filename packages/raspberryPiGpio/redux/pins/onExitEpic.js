@@ -1,4 +1,4 @@
-const { bindCallback } = require('rxjs')
+const { fromEvent } = require('rxjs')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { ignoreElements, mergeMap, take, tap } = require('rxjs/operators')
 const { merge } = require('rxjs')
@@ -17,48 +17,47 @@ const sigIntEpic = (
 		}) => (
 			merge(
 				(
-					bindCallback(
-						process
-						.on
-						.bind(process)
-					)(
-						'beforeExit'
+					fromEvent(
+						process,
+						'beforeExit',
 					)
 				),
 				(
-					bindCallback(
-						process
-						.on
-						.bind(process)
-					)(
-						'SIGINT'
+					fromEvent(
+						process,
+						'SIGINT',
 					)
 				),
 				(
-					bindCallback(
-						process
-						.on
-						.bind(process)
-					)(
-						'SIGTERM'
+					fromEvent(
+						process,
+						'SIGTERM',
 					)
 				),
 				(
-					bindCallback(
-						process
-						.on
-						.bind(process)
-					)(
-						'SIGUSR2'
+					fromEvent(
+						process,
+						'SIGUSR2',
+					)
+					.pipe(
+						tap(() => {
+							process
+							.exit()
+						})
 					)
 				),
 			)
 			.pipe(
 				take(1),
 				tap(() => {
+					console.log(pin)
+
 					pin
-					.unexport()
-				})
+					&& (
+						pin
+						.unexport()
+					)
+				}),
 			)
 		)),
 		ignoreElements(),
