@@ -18,7 +18,7 @@ const addPinsEpic = (
 			.START_TASK
 		),
 		ofTaskName(
-			'gpio',
+			'listen',
 			'undefined',
 		),
 		map(() => state$.value),
