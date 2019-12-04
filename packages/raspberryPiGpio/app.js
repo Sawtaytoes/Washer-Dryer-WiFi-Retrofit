@@ -46,6 +46,7 @@ of(store)
 	tap(
 		runTasks(
 			'lint',
+			'connect',
 			'listen',
 		)
 	),

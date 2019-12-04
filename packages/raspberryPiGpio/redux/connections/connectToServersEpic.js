@@ -16,7 +16,7 @@ const connectToServersEpic = (
 			.START_TASK
 		),
 		ofTaskName(
-			'listen',
+			'connect',
 			'undefined',
 		),
 		map(() => state$.value),
