@@ -39,7 +39,9 @@
     "@redux-observable-backend/redux-utils": "^4.3.2",
     "@redux-observable-backend/websocket": "^4.3.2",
     "better-module-alias": "^1.0.1",
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "nodemailer": "^6.3.1",
+    "nodemailer-smtp-transport": "^2.7.4"
   },
   "publishConfig": {
     "access": "public"
