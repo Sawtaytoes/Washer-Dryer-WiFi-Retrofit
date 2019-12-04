@@ -1,14 +1,14 @@
 const { combineEpics } = require('redux-observable')
 
 const addPinsEpic = require('./addPinsEpic')
+const onExitEpic = require('./onExitEpic')
 const pinListenerEpic = require('./pinListenerEpic')
-const sigIntEpic = require('./sigIntEpic')
 
 const pinsEpic = (
 	combineEpics(
 		addPinsEpic,
+		onExitEpic,
 		pinListenerEpic,
-		sigIntEpic,
 	)
 )
 
