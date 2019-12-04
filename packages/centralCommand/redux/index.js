@@ -4,7 +4,6 @@ const { webSocketsEpic, webSocketsReducers } = require('@redux-observable-backen
 
 const {
 	devicesEpic,
-	devicesReducer,
 } = require('./devices')
 
 const rootEpic = (
@@ -16,7 +15,6 @@ const rootEpic = (
 
 const rootReducers = {
 	...webSocketsReducers,
-	devices: devicesReducer,
 }
 
 const rootReducer = (
