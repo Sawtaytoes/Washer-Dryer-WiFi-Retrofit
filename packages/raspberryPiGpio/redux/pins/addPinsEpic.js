@@ -27,7 +27,9 @@ const addPinsEpic = (
 			.selectors
 			.selectConfigurationSet()
 		),
-		mergeMap(({ pins }) => (
+		mergeMap(({
+			pins,
+		}) => (
 			pins
 		)),
 		map(({
@@ -37,8 +39,6 @@ const addPinsEpic = (
 			...rest
 		}) => ({
 			...rest,
-			direction,
-			edge,
 			pin: (
 				new Gpio(
 					pinNumber,
@@ -46,7 +46,6 @@ const addPinsEpic = (
 					edge,
 				)
 			),
-			pinNumber,
 		})),
 		map(addPin),
 		catchEpicError(),
